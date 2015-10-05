@@ -32,13 +32,13 @@ on_fail () {
 
 
 # pull the up-to-date manifest from the BLUE (existing) application
-MANIFEST=$(mktemp -t "${BLUE}_manifest.XXXXXXXXXX")
-cf create-app-manifest $BLUE -p $MANIFEST
+
 
 # set up try/catch
 # http://stackoverflow.com/a/185900/358804
 trap on_fail ERR
 
+MANIFEST="manifest.yml"
 DOMAIN=$(cat $MANIFEST | grep domain: | awk '{print $2}')
 
 # create the GREEN application
