@@ -22,7 +22,7 @@ GREEN="${BLUE}-B"
 finally ()
 {
   # we don't want to keep the sensitive information around
-  rm $MANIFEST
+  # rm $MANIFEST
 }
 
 on_fail () {
