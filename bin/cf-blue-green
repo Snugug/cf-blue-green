@@ -18,13 +18,6 @@ fi
 BLUE=$1
 GREEN="${BLUE}-B"
 
-
-finally ()
-{
-  # we don't want to keep the sensitive information around
-  # rm $MANIFEST
-}
-
 on_fail () {
   finally
   echo "DEPLOY FAILED - you may need to check 'cf apps' and 'cf routes' and do manual cleanup"
@@ -55,6 +48,5 @@ cf routes | tail -n +4 | grep $BLUE | awk '{print $3" -n "$2}' | xargs -n 3 cf m
 cf delete $BLUE -f
 cf rename $GREEN $BLUE
 cf delete-route $DOMAIN -n $GREEN -f
-finally
 
 echo "DONE"
